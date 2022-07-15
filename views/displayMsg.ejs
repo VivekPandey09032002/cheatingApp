@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Document</title>
+  </head>
+
+  <style>
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 250px;
+    }
+    .container {
+      margin-top: 20px;
+      width: 768px;
+      margin: auto;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #left {
+      height: 50vh;
+      overflow: auto;
+      border: 1px soild red;
+    }
+
+    #right {
+      height: 50vh;
+      overflow: auto;
+      border: 1px soild black;
+    }
+    .wrapper {
+      height: 100vh;
+    }
+    h1{
+        text-align: center;
+        background-color: blueviolet;
+    }
+
+    h3:nth-child(odd){
+        background-color: aqua;
+        
+    }
+    h3:nth-child(even){
+        background-color: cadetblue;
+        
+    }
+  </style>
+  <body>
+    <div class="wrapper">
+      <div class="grid">
+        <div class="col" id="left">
+          <h1>Bf</h1>
+          <div class="cover">
+            <% sendMsg.forEach(element => { %>
+                <h3><%=element%></h3>
+                <% }) %>
+          </div>
+
+        </div>
+        <div class="col" id="right">
+          <h1>Gf: <%=name%></h1>
+          <div class="cover">
+            <% receiveMsg.forEach(element => { %>
+                <h3><%=element%></h3>
+                <% }) %>
+          </div>
+
+        </div>
+      </div>
+      <div class="container">
+        <% if (isGf) { %> <%- include ("sendAsGF.ejs") %> <% } else { %> <%-
+        include ("sendAsBf.ejs") %> <%} %>
+      </div>
+    </div>
+  </body>
+</html>
