@@ -1,0 +1,108 @@
+:root {
+  --bs-body-font-family: "Rubik", sans-serif;
+}
+body {
+  background-image: url(/img/subtle-prism.svg);
+}
+.container-xxl {
+  background-color: whitesmoke;
+  
+}
+/* header start*/
+
+header > h1 {
+  background: rgb(4, 0, 36);
+  font-size: 4em;
+  color: darkred;
+  background: rgb(36,0,15);
+  background: linear-gradient(90deg, rgba(36,0,15,0.4598039899553571) 11%, rgba(33,73,200,0.36456589471726186) 47%, rgba(72,0,255,0.37296925606179976) 100%); 
+  font-family: "Dancing Script", cursive;
+  display: block;
+  border: 1px solid darkred;
+  border-radius: 55% 45% 66% 34% / 63% 66% 34% 37%;
+  box-shadow: 19px -14px 21px 0px rgba(237, 172, 172, 0.75);
+  z-index: 10;
+}
+/* header end */
+
+/* login start */
+.btn-login {
+  font-size: 0.9rem;
+  letter-spacing: 0.05rem;
+  padding: 0.75rem 1rem;
+}
+
+.btn-google {
+  color: white !important;
+  background-color: #ea4335;
+}
+
+.btn-facebook {
+  color: white !important;
+  background-color: #3b5998;
+}
+/* login end */
+
+/* registration start */
+.card-img-left {
+  width: 58%;
+  /* Link to your background image using in the property below! */
+  background: scroll center
+    url("/img/register.png");
+  
+}
+/* registration end */
+
+
+/* display chats */
+.wrapper{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap : 20px;
+  max-height: 580px;
+  overflow: auto; 
+}
+
+.container {
+  border: 2px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+
+.darker {
+  border-color: #ccc;
+  background-color: #ddd;
+}
+
+.container::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.container img {
+  float: left;
+  max-width: 60px;
+  width: 100%;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+.container img.right {
+  float: right;
+  margin-left: 20px;
+  margin-right:0;
+}
+
+.time-right {
+  float: right;
+  color: #aaa;
+}
+
+.time-left {
+  float: left;
+  color: #999;
+}

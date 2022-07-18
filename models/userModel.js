@@ -11,8 +11,7 @@ const userGfs = new mongoose.Schema( {
         unique : true,
         required : true
     },
-    sendMsg: [
-    ],
+    sendMsg: [],
     receiveMsg:[]
 })
 
