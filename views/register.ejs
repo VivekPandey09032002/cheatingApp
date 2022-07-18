@@ -11,7 +11,7 @@
               <%= msg %>
             </div>
             <% } %>
-          <h3 class="card-title text-center mb-5 fw-light fs-5">Register</h3>
+          <h3 class="card-title text-center mb-5 fw-light fs-5 fw-bold">Register</h3>
           <form method="post" accept="/register" id="form">
             <div class="form-floating mb-3">
               <input
@@ -20,6 +20,7 @@
                 id="floatingInputUsername"
                 placeholder="myusername"
                 name="name"
+                autocomplete="off"
                 required
                 autofocus
               />
@@ -33,6 +34,7 @@
                 id="floatingInputEmail"
                 placeholder="name@example.com"
                 name="email"
+                autocomplete="off"
               />
               <label for="floatingInputEmail">Email</label>
             </div>
@@ -44,6 +46,7 @@
                 id="floatingInputEmail"
                 placeholder="A"
                 name="section"
+                autocomplete="off"
               />
               <label for="floatingInputSection">section</label>
             </div>
@@ -55,6 +58,7 @@
                 id="floatingInputEmail"
                 placeholder="2023"
                 name="batch"
+                autocomplete="off"
               />
               <label for="floatingInputBatch">Batch</label>
             </div>
@@ -69,6 +73,7 @@
                 placeholder="Password"
                 autocomplete="nope"
                 name="password"
+                autocomplete="off"
               />
               <label for="floatingPassword">Password</label>
             </div>
@@ -80,6 +85,7 @@
                 id="floatingPasswordConfirm"
                 placeholder="Confirm Password"
                 name="cpassword"
+                autocomplete="off"
               />
               <label for="floatingPasswordConfirm">Confirm Password</label>
             </div>

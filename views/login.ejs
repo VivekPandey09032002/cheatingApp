@@ -10,7 +10,7 @@
             </div>
             <% } %>
             <div class="card-body p-4 p-sm-5">
-              <h5 class="card-title text-center mb-5 fw-light fs-5">Login As GirlFriend</h5>
+              <h5 class="card-title text-center mb-5 fw-light fs-5 fw-bold">Login As GirlFriend</h5>
               <form method="post" action="/login">
                 <div class="form-floating mb-3">
                   <input
@@ -19,6 +19,7 @@
                     id="floatingInput"
                     placeholder="name@example.com"
                     name = "email"
+                    autocomplete="off"
                   />
                   <label for="floatingInput">Email address</label>
                 </div>
@@ -29,6 +30,8 @@
                     id="floatingPassword"
                     placeholder="Password"
                     name = "password"
+                    autocomplete="off"
+                    
                   />
                   <label for="floatingPassword">Password</label>
                 </div>

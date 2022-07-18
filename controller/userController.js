@@ -1,6 +1,7 @@
 import User, { userGf } from "../models/userModel.js";
 import bcrypt from "bcrypt";
 class userController {
+  
   static registerGf = async (req, res) => {
     try {
       const { name, email, section, batch, password, cpassword } = req.body;
@@ -71,7 +72,7 @@ class userController {
       // logged in
       else {
         req.session.session_email = email
-        res.redirect(`/displayMsg?email=${email}`);
+        res.redirect(`/displayMsg?email=${email}&isGf=true`);
       }
     } catch (e) {
       console.log(e)
@@ -80,26 +81,23 @@ class userController {
   };
 
   static displayMsg = async (req, res) => {
-    const { name, isGf } = req.body;
+    const {name} = req.body;
     let result = await userGf.findOne({ name }, { _id: 0 });
     if (result == null) {
-      return res.render("selectGf");
+      return res.render("selectGf",{msg : "cannot find the Gf"});
     }
+    req.session.session_male = true
     let myobj = {
       name: name,
       email: result.email,
       sendMsg: result.sendMsg,
       receiveMsg: result.receiveMsg,
     };
-    let gf;
-    if (isGf == "false") gf = false;
-    else if (isGf == "true") gf = true;
-    myobj.isGf = gf;
-    return res.redirect(`/displayMsg?email=${result.email}`)
+    return res.redirect(`/displayMsg?email=${result.email}&isGf=false`)
   };
 
   static updateGfMsg = async (req, res) => {
-    console.log(req.body);
+    
     const { email, msg } = req.body;
     const getName = await User.findOne({ email }, { _id: 0 });
     let getAllDetail = await userGf.findOne({ email }, { _id: 0 });
@@ -112,7 +110,7 @@ class userController {
     let array = getAllDetail.receiveMsg;
     array.unshift(msg);
     let result = await userGf.updateOne({ receiveMsg: array });
-    return res.redirect(`/displayMsg?email=${email}`);
+    return res.redirect(`/displayMsg?email=${email}&isGf=true`);
   };
 
   static updateBfMsg = async (req, res) => {
@@ -128,13 +126,24 @@ class userController {
     let array = getAllDetail.sendMsg;
     array.unshift(msg);
     let result = await userGf.updateOne({ sendMsg: array });
-    return res.render(`/displayMsg?email=${email}`);
+    return res.redirect(`/displayMsg?email=${email}&isGf=false`);
   };
 
   // get methods
+  static getLogOut = (req,res) => {
+    req.session.destroy( (err)=>{
+      console.log(err)
+    })
+    return res.redirect('/')
+  }
+
   static getDisplayMsg = async (req, res) => {
     if(req.query.email === undefined){
       return res.redirect('/login')
+    }
+    let isGf = true
+    if(req.query.isGf == 'false'){
+      isGf = false
     }
     const result = await User.findOne({ email: req.query.email }, { _id: 0 })
     const gf = await userGf.findOne({ email: req.query.email }, { _id: 0 });
@@ -144,7 +153,13 @@ class userController {
       sendMsg: gf.sendMsg,
       receiveMsg: gf.receiveMsg,
     };
-    return res.status(200).render("displayMsg", { ...myobj, isGf: true, title : 'Chat with Gf' });
+    let title = "";
+    if(isGf){
+      title = 'Chat with Gf'
+    }else{
+      title = 'Chat with Bf'
+    }
+    return res.status(200).render("displayMsg", { ...myobj, isGf,  title});
   };
 
 }

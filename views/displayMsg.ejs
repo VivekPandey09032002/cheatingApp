@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title></title>
   </head>
-  <% console.log(typeof name) %>
   <% if (typeof name == 'undefined') { %> 
     <script>
       window.location.replace(`http://localhost:3000/login`)
@@ -26,7 +25,7 @@
         <% } else { %>
           <div class="container">
         <% }%>
-            <img src="/img/female.webp" alt="Avatar" style="width: 100%" />
+            <img src="/img/female_chat.png" alt="Avatar" style="width: 100%" />
             <p>
               <%= name != 'undefined' ? name + ': ' : 'female: ' %> <%= locals.receiveMsg[index] %>
             </p>
@@ -36,7 +35,7 @@
         <% } else { %>
           <div class="container darker">
         <% }%>
-            <img src="/img/male.jpg" alt="Avatar" style="width: 100%" />
+            <img src="/img/male_chat.png" alt="Avatar" style="width: 100%" />
             <p>
               vivek:  <%= locals.sendMsg[index] %>
             </p>

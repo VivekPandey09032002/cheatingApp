@@ -51,6 +51,13 @@ header > h1 {
     url("/img/register.png");
   
 }
+.card-img-left-1 {
+  width: 58%;
+  /* Link to your background image using in the property below! */
+  background: scroll center
+    url("/img/chatting.png");
+  
+}
 /* registration end */
 
 
