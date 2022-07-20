@@ -1,5 +1,6 @@
 import  express  from "express";
 import userController from "../controller/userController.js";
+import upload from "../controller/fileUpload.js";
 const userRoutes = express.Router();
 
 function authen (req,res,next) {
@@ -12,15 +13,25 @@ function authen (req,res,next) {
     
 }
 
-userRoutes.post('/register',userController.registerGf);
+function alreadyLoggedIn (req,res,next) {
+    if(req.session.session_email){
+        let email = req.session.session_email
+        return res.redirect(`/displayMsg?email=${email}&isGf=true`)
+    }else{
+        next()
+    }    
+}
+userRoutes.post("/uploadImg",upload.single('images'),userController.uploadImage)
+userRoutes.post('/register',upload.single('image'),userController.registerGf);
 userRoutes.post('/login',userController.userLogin);
 userRoutes.post('/displayMsg',userController.displayMsg);
-userRoutes.post('/updateGfMsg',userController.updateGfMsg);
-userRoutes.post('/updateBfMsg',userController.updateBfMsg);
+userRoutes.post('/updateMsg',userController.updateMsg);
 userRoutes.get('/', (req,res) => {res.render('homepage.ejs')})
 userRoutes.get('/register',(req,res)=>{ res.render('register.ejs'), {title : 'Registration Page'}})
-userRoutes.get('/login', (req,res) => {res.render('login.ejs'), {title : 'Login Page'}})
+userRoutes.get('/login', alreadyLoggedIn,(req,res) => {res.render('login.ejs'), {title : 'Login Page'}})
 userRoutes.get('/selectGf',(req,res) => {res.render('selectGf.ejs', {title : 'Gf Selection'})})
 userRoutes.get('/displayMsg',authen,userController.getDisplayMsg)
 userRoutes.get('/logout',userController.getLogOut)
+userRoutes.get('/deleteMsg',userController.deleteMessage)
+userRoutes.get('/displayProfile',userController.displayProfile)
 export default userRoutes;

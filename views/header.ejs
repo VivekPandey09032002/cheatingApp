@@ -1,4 +1,3 @@
-
 <header
   class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom"
 >
@@ -15,8 +14,12 @@
   <h1>Welcome to cheating App</h1>
   <ul class="nav col-12 col-md-auto mb-2 justify-content-center">
     <a href="/" class="nav-link px-2 link-secondary active">Home</a>
-    <a href="/register" class="nav-link px-2 link-secondary">Registration</a>
-    <a href="/login" class="nav-link px-2 link-secondary">Login</a>
-    <a href="/login" class="nav-link px-2 link-secondary">LogOut</a>
+    <a href="/register" class="nav-link px-2 link-secondary">Register</a>
+    <% if (typeof name === 'undefined') { %>
+      <a href="/login" class="nav-link px-2 link-secondary">Login</a>
+    <% }else{ %>
+      <a href="/login" class="nav-link px-2 link-secondary">Chat</a>
+    <% } %>
+    <a href="/logout" class="nav-link px-2 link-secondary">LogOut</a>
   </ul>
 </header>

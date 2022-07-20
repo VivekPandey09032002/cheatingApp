@@ -1,0 +1,31 @@
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-7">
+      <div>
+        <% if(typeof result.imgLocation !== "undefined" && result.imgLocation != "") { %>
+        <img src="/upload/images/<%=result.imgLocation%>" style="width:100%; max-height:600px;" class="img-fluid" alt="<%=result.name%>'s image" />
+        <%} else {%>
+        <img src="/upload/images/defaultImg.png" style="width:100%; max-height:600px;" class="img-fluid" alt="<%=result.name%>'s image" />
+        <%}%> 
+        <form method="post" action="/uploadImg?email=<%=result.email%>" enctype="multipart/form-data">
+            <input type="file" class="form-control" name="images">
+            <button type="submit" name="image" class="text-center"
+            style="margin: 10px 260px;"
+            ><span class="badge bg-secondary">Upload Profile Image</button></h3>
+            
+        </form>
+        
+      </div>
+    </div>
+    <div class="col-5">
+      <div>
+        <h1 class="text-center"><%= result.name %>'s Description</h1>
+        <h4 class="mt-5">Name: <%=result.name%></h4>
+        <h4>Email: <%=result.email%></h4>
+        <h4>Section: <%=result.section%></h4>
+        <h4>Batch: <%=result.batch%></h4>  
+      </div>
+    </div>
+  </div>
+</div>

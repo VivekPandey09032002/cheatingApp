@@ -63,13 +63,10 @@ header > h1 {
 
 /* display chats */
 .wrapper{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap : 20px;
-  max-height: 580px;
-  overflow: auto; 
+  max-height: 650px;
+  height: 100%;
+  overflow: auto;
 }
-
 .container {
   border: 2px solid #dedede;
   background-color: #f1f1f1;
@@ -102,6 +99,11 @@ header > h1 {
   float: right;
   margin-left: 20px;
   margin-right:0;
+}
+.container span {
+  display: block;
+  margin: 10px;
+  font-size: 1.3rem;
 }
 
 .time-right {

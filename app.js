@@ -5,7 +5,7 @@ import connectDB from "./db/connection.js";
 import expressEjsLayouts from "express-ejs-layouts";
 import cookieParser from "cookie-parser";
 import session from "express-session";
-import * as dotenv from "dotenv" 
+import * as dotenv from "dotenv" ;
 const app = express();
 
 //env file setup
@@ -14,10 +14,11 @@ dotenv.config({
 })
 const port = process.env.PORT || 5000
 const DbName = process.env.DB_NAME 
-const DbUrI = process.env.DB_URI
+const DbUrI = process.env.DB_URII
 
 //static resourse
 app.use(express.static('public'))
+app.use("/upload", express.static('upload'))
 //ejs-layout
 app.use(expressEjsLayouts)
 //setup body parser

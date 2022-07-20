@@ -1,72 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title></title>
-  </head>
-  <% if (typeof name == 'undefined') { %> 
+<% if (typeof name == 'undefined') { %> 
     <script>
       window.location.replace(`http://localhost:3000/login`)
     </script>
-  <% } %>
-  <body>
+<% }%>
 
-    <div class="d-flex text-center">
-      <div class="container"><%=locals.name%>'s Message</div>
-      <div class="container darker">Vivek's Message</div>
-    </div>
-    <div class="wrapper">
+<div class="wrapper" id="parent">
       <!-- looping -->
-      <% for( let index = 0; index < locals.receiveMsg?.length || index < locals.sendMsg?.length; index++ ) { %>
-        <% if (index > locals.receiveMsg.length && locals.receiveMsg[index] != '') { %>
-          <div class="container" style="visibility: hidden;">
-        <% } else { %>
-          <div class="container">
-        <% }%>
-            <img src="/img/female_chat.png" alt="Avatar" style="width: 100%" />
-            <p>
-              <%= name != 'undefined' ? name + ': ' : 'female: ' %> <%= locals.receiveMsg[index] %>
-            </p>
-          </div>
-        <% if (index > locals.sendMsg?.length && locals?.sendMsg[index] != '') { %>
-          <div class="container" style="visibility: hidden;">
-        <% } else { %>
-          <div class="container darker">
-        <% }%>
-            <img src="/img/male_chat.png" alt="Avatar" style="width: 100%" />
-            <p>
-              vivek:  <%= locals.sendMsg[index] %>
-            </p>
-          </div>
-        
-      <% } %>
-    </div>
-
-    <% if (locals.isGf) { %>
-      <form
-      method="POST"
-      class="d-flex flex-column justify-content-center align-items-center"
-      action="/updateGfMsg"
-    >
-      <textarea name="msg" class="form-control" cols="20" rows="1" value="" placeholder="type your message here!!!!"></textarea>
-      <input type="text" name="email" value="<%= locals.email %>" hidden id="" />
-      <input type="text" name="isGf" value="true" hidden id="" />
-      <button type="submit" class="mt-2 btn btn-lg btn-dark" value="Send as Gf">Send as Gf</button>
-    </form>
-    <% } else {%>
-    <form
-      method="POST"
-      class="d-flex flex-column justify-content-center align-items-center"
-      action="/updateBfMsg"
-    >
-      <textarea name="msg" class="form-control" cols="20" rows="1" value=""></textarea>
-      <input type="text" name="email" value="<%= locals.email %>" hidden id="" />
-      <input type="text" name="isGf" value="false" hidden id="" />
-      <button type="submit" class="mt-2 btn btn-lg btn-dark" value="Send as Bf">Send as Bf</button>
       
-    </form>
-    <% } %>
-  </body>
+      <% locals.gf.messages.forEach(element => { %>
+        <% if (element.isMale) { %>
+          <div class="container " style="background-color: mintcream;">
+            
+            <img src="/img/male_chat.png" alt="" srcset="">
+            <span class="time-left text-dark"> Vivek: <%=element.message%></span>
+            <code class="time-right"><%=element.createdDate%></code>
+            <a 
+            class="btn time-right text-info"
+            href="/deleteMsg?email=<%=locals.gf.email%>&isGf=<%=locals.isGf%>&msg=<%=element.message%>">Delete Msg</a>
+          </div>
+
+        <% } else{%>
+          <div class="container" style="background-color: rebeccapurple;">
+            
+            <img src="/img/female_chat.png" alt="" srcset="">
+            <span class="time-left text-light"><%=name%>: <%=element.message%></span>
+            <code class="time-right"><%=element.createdDate%></code>
+            <a 
+            class="btn time-right text-info"
+            href="/deleteMsg?email=<%=locals.gf.email%>&isGf=<%=locals.isGf%>&msg=<%=element.message%>">Delete Msg</a>
+          </div>
+         <%}%> 
+
+
+      <%}); %>
+</div>
+  <form
+  method="POST"
+  class="d-flex flex-column justify-content-center align-items-center"
+  action="/updateMsg"
+  >
+    <textarea name="msg" class="form-control" cols="20" rows="1" value="" placeholder="type your message here!!!!"></textarea>
+    <input type="text" name="email" value="<%= locals.gf.email %>" hidden id="" />
+  <% if (locals.isGf) { %>
+    <input type="text" name="isGf" value="true" hidden id="" />
+    <button type="submit" class="mt-2 btn btn-lg btn-dark" value="Send as Gf">Send as Gf</button>
+  <% } else {%>
+    <input type="text" name="isGf" value="false" hidden id="" />
+    <button type="submit" class="mt-2 btn btn-lg btn-dark" value="Send as Bf">Send as Bf</button>
+  <% } %>
+
+  </form>
+
+</body>
+
+
 </html>

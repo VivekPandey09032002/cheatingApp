@@ -1,14 +1,4 @@
-<script>
-  
-  if (!document.cookie) {
-    let pass = prompt("enter password");
-    if(pass !='vivek'){
-      window.location.replace('http://localhost:3000/')
-    }else{
-      document.cookie = "auth:true";
-    }
-  }
-</script>
+
 
 <div class="container">
   <div class="row">
@@ -31,20 +21,28 @@
               <input
                 type="text"
                 class="form-control"
-                id="floatingInputEmail"
+                id="gfName"
                 placeholder="name@example.com"
                 name="name"
                 autocomplete="off"
               />
               <label for="floatingInputEmail">Enter gf Name</label>
             </div>
-            <div class="d-grid mb-2">
-              <button
-                class="btn btn-lg btn-primary btn-login fw-bold text-uppercase"
-                type="submit"
+            <div class="d-flex justify-content-evenly mb-2">
+              
+              <a
+                class="btn  btn-primary btn-login fw-bold text-uppercase"
+                href = "/selectGf"
+                id = "profile"
               >
-                submit
-              </button>
+                Profile
+            </a>
+              <button
+              class="btn  btn-primary btn-login fw-bold text-uppercase"
+              type="submit"
+            >
+              Chat
+            </button>
             </div>
           </form>
         </div>
@@ -52,3 +50,30 @@
     </div>
   </div>
 </div>
+
+
+<script defer>
+  
+  if (!document.cookie) {
+    let pass = prompt("enter password");
+    if(pass !='vivek'){
+      window.location.replace('http://localhost:3000/')
+    }else{
+      document.cookie = "auth:true";
+    }
+  }
+  let profile = document.getElementById("profile")
+  let gfName = document.getElementById("gfName")
+  profile.gfData = ""
+  gfName.addEventListener('input', (e)=>{
+    profile.gfData= e.originalTarget.value
+  })
+  
+  profile.addEventListener('click', (e)=>{
+    e.preventDefault()
+    if(profile.gfData != "")
+      window.location = `http://localhost:3000/displayProfile?name=${profile.gfData}`
+    
+  })
+  
+</script>
