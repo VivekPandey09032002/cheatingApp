@@ -1,17 +1,18 @@
 <div class="container">
-  <div class="row">
-    <div class="col-lg-10 col-xl-9 mx-auto">
-      <div class="card flex-row my-5 border-0 shadow rounded-3 overflow-hidden">
-        <div class="card-img-left d-none d-md-flex">
-          <!-- Background image for card set in CSS! -->
+      <div class="row">
+        <div class="card col-6 align-self-center">
+            <img class="card-img-top mt-2" src="/img/registerImg.jpg"  alt="Card image cap">
+            <div class="card-body ">
+              <p class="card-text text-center pt-3">Welcome to the Registration Page of the Application. To register fill the details carefully, uploading image is optional but all the other fields except image upload are mandatory. If you are already resgister then, click on login page for login. Thank You.</p>
+            </div>
         </div>
-        <div class="card-body p-4 p-sm-5">
+        <div class="col-5 offset-1 card p-2 p-sm-5 justify-content-center">
           <% if (typeof msg == 'undefined' ? false : true) { %> 
             <div class="alert alert-danger text-center" role="alert">
               <%= msg %>
             </div>
             <% } %>
-          <h3 class="card-title text-center mb-5 fw-light fs-5 fw-bold">Register</h3>
+          <h3 class="card-title text-center mb-2 fw-light fs-5 fw-bold">Register</h3>
           <form method="post" accept="/register" id="form" enctype="multipart/form-data">
             <div class="form-floating mb-3">
               <input
@@ -117,7 +118,5 @@
           </form>
         </div>
       </div>
-    </div>
-  </div>
 </div>
 

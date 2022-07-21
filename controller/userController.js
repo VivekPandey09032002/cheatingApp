@@ -182,6 +182,21 @@ class userController {
       return res.render("displayProfile.ejs", { result });
     }
   };
+  static getSelectGf =async (req,res) => {
+      const result = await User.find()
+      let arr = [];
+      result.forEach( (element)=>{
+        arr.push(element.name)
+      })
+      res.render('selectGf.ejs', {title : 'Gf Selection' , names : arr})
+  }
+
+  static getUpdateDesc = async (req,res) => {
+    const {email,desc} = req.query
+    console.log(email,desc)
+    const result = await User.findOneAndUpdate({email},{description : desc})
+    return res.redirect("/selectGf");
+  }
 }
 
 export default userController;

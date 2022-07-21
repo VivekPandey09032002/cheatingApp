@@ -1,25 +1,33 @@
-<header
-  class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom"
->
-  <a
-    href="/"
-    class="d-flex align-item-center col-md-3 mb-2 mb-md-0 text-dark text-decorative-none"
-  >
-    <img
-      src="/img/love-svgrepo-com.svg"
-      style="width: 229px; height: 68px"
-      alt="Cheating App logo"
-    />
-  </a>
-  <h1>Welcome to cheating App</h1>
-  <ul class="nav col-12 col-md-auto mb-2 justify-content-center">
-    <a href="/" class="nav-link px-2 link-secondary active">Home</a>
-    <a href="/register" class="nav-link px-2 link-secondary">Register</a>
-    <% if (typeof name === 'undefined') { %>
-      <a href="/login" class="nav-link px-2 link-secondary">Login</a>
-    <% }else{ %>
-      <a href="/login" class="nav-link px-2 link-secondary">Chat</a>
-    <% } %>
-    <a href="/logout" class="nav-link px-2 link-secondary">LogOut</a>
-  </ul>
+
+<header class="container mt-3" style="background-color: rgba(103, 189, 44, 0.23);">
+  <div class="row">
+    <div class="col-1" style="border-right: 2px dashed #b91717">
+      <a href="/">
+        <img
+          src="/img/love-svgrepo-com.svg"
+          width="100px"
+          height="78px"
+          alt="Cheating App logo"
+          class="pump"
+        />
+      </a>
+    </div>
+    <div class="col-7 align-self-center" style="border-right: 2px dashed #b91717">
+      <h1 class="text-center moving-border" style="font-size: 3.7rem; color: indigo;">
+        The ChatGod App
+      </h1>
+    </div>
+    <div class="col-4">
+      <div class="navbar col-12 h-100 align-items-center">
+        <a href="/" class="nav-link navbar-text text-dark">Home</a>
+        <a href="/register" class="nav-link navbar-text text-dark">Register</a>
+        <% if(typeof gf !== 'undefined' || typeof result !== 'undefined') {%>
+        <a href="/logout" class="nav-link navbar-text text-dark">LogOut</a>
+        <% } else {%>
+        <a href="/login" class="nav-link navbar-text text-dark">Login</a>
+        <a href="/login" class="nav-link navbar-text text-dark">Chat</a>
+        <%} %>
+      </div>
+    </div>
+  </div>
 </header>

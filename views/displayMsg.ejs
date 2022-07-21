@@ -4,30 +4,48 @@
     </script>
 <% }%>
 
-<div class="wrapper" id="parent">
+<div class="container" id="parent">
       <!-- looping -->
       
       <% locals.gf.messages.forEach(element => { %>
         <% if (element.isMale) { %>
-          <div class="container " style="background-color: mintcream;">
-            
-            <img src="/img/male_chat.png" alt="" srcset="">
-            <span class="time-left text-dark"> Vivek: <%=element.message%></span>
-            <code class="time-right"><%=element.createdDate%></code>
-            <a 
-            class="btn time-right text-info"
-            href="/deleteMsg?email=<%=locals.gf.email%>&isGf=<%=locals.isGf%>&msg=<%=element.message%>">Delete Msg</a>
+          <div class="row align-items-center mb-1 shadow-lg" style="background-color:  #0d4e8891;">
+            <div class="col-1 " id="chat_img">
+              <img src="/img/male_chat.png" class="" alt="" srcset="">
+              <p class="text-center fw-bold text-info">Vivek</p>
+            </div>
+            <div class="col-8 align-self-top">
+              <p class="text-light my-2 overflow-hidden " style="font-size: 1.2rem;"><%=element.message%></p>
+            </div>
+            <div class="col-2">
+              <code class="text-dark"><%=element.createdDate%></code>
+            </div>
+            <div class="col-1">
+              <a 
+              class="btn  btn-light text-info"
+              href="/deleteMsg?email=<%=locals.gf.email%>&isGf=<%=locals.isGf%>&msg=<%=element.message%>"
+              >Delete</a>
+            </div>
           </div>
 
         <% } else{%>
-          <div class="container" style="background-color: rebeccapurple;">
-            
-            <img src="/img/female_chat.png" alt="" srcset="">
-            <span class="time-left text-light"><%=name%>: <%=element.message%></span>
-            <code class="time-right"><%=element.createdDate%></code>
-            <a 
-            class="btn time-right text-info"
-            href="/deleteMsg?email=<%=locals.gf.email%>&isGf=<%=locals.isGf%>&msg=<%=element.message%>">Delete Msg</a>
+          <div class="row align-items-center mb-1 shadow-lg" style="background-color:  #370a64a3;">
+            <div class="col-1 " id="chat_img">
+              <img src="/img/female_chat.png"  alt="" srcset="">
+              <p class="text-center fw-bold text-info"><%=name%></p>
+            </div>
+            <div class="col-8 align-self-top">
+              <p class="text-light my-2 overflow-hidden"><%=element.message%></p>
+            </div>
+            <div class="col-2">
+              <code class="text-dark"><%=element.createdDate%></code>
+            </div>
+            <div class="col-1">
+              <a 
+              class="btn  btn-light text-info"
+              href="/deleteMsg?email=<%=locals.gf.email%>&isGf=<%=locals.isGf%>&msg=<%=element.message%>"
+              >Delete</a>
+            </div>
           </div>
          <%}%> 
 
@@ -36,10 +54,10 @@
 </div>
   <form
   method="POST"
-  class="d-flex flex-column justify-content-center align-items-center"
+  class="d-flex flex-column justify-content-center align-items-center mt-2"
   action="/updateMsg"
   >
-    <textarea name="msg" class="form-control" cols="20" rows="1" value="" placeholder="type your message here!!!!"></textarea>
+    <textarea id="msg" name="msg" class="form-control" cols="20" rows="1" value="" placeholder="type your message here!!!!" autofocus></textarea>
     <input type="text" name="email" value="<%= locals.gf.email %>" hidden id="" />
   <% if (locals.isGf) { %>
     <input type="text" name="isGf" value="true" hidden id="" />
@@ -51,7 +69,16 @@
 
   </form>
 
-</body>
+  <script defer>
+    
+    function myfun (){
+      const msg = document.getElementById('msg')
+      if(msg.value == ""){
+        window.location.reload(1);
+      }
+    }
+  setInterval(myfun, 5000);
+    
+  </script>
 
 
-</html>

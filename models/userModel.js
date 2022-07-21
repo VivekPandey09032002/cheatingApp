@@ -48,6 +48,7 @@ const userSchema = new mongoose.Schema({
     required: true,
   },
   imgLocation: String,
+  description: String
 });
 
 userSchema.pre("save", async function (next) {

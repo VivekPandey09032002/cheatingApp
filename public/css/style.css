@@ -1,54 +1,110 @@
 :root {
   --bs-body-font-family: "Rubik", sans-serif;
+  --bs-body-font-weight: 300;
 }
 body {
-  background-image: url(/img/subtle-prism.svg);
+  background-image: url(/img/background-svg.svg);
 }
-.container-xxl {
-  background-color: whitesmoke;
-  
+h1,h2,h3,h4,h5,h5,p,span,a{
+  font-weight: 300;
 }
-/* header start*/
+.card {
+  background-color: #1899634f  !important;
+}
+/* moving border-animation */
+@keyframes ani-border {
+  0%   {  border-color: aqua;
+        border-radius: 24% 76% 20% 80% / 18% 78% 22% 82%; }
+  25%  { border-color: aquamarine;
+    border-radius: 79% 21% 85% 15% / 75% 17% 83% 25%;   }
+  50%  { border-color: cornflowerblue;
+    border-radius: 23% 77% 22% 78% / 16% 78% 22% 84%;  }
+  100% {border-color: darkblue;
+    border-radius: 75% 25% 83% 17% / 76% 22% 78% 24%;   }
+}
 
-header > h1 {
-  background: rgb(4, 0, 36);
-  font-size: 4em;
-  color: darkred;
-  background: rgb(36,0,15);
-  background: linear-gradient(90deg, rgba(36,0,15,0.4598039899553571) 11%, rgba(33,73,200,0.36456589471726186) 47%, rgba(72,0,255,0.37296925606179976) 100%); 
-  font-family: "Dancing Script", cursive;
-  display: block;
-  border: 1px solid darkred;
-  border-radius: 55% 45% 66% 34% / 63% 66% 34% 37%;
-  box-shadow: 19px -14px 21px 0px rgba(237, 172, 172, 0.75);
-  z-index: 10;
+/* moving border */
+.moving-border {
+  border: 2px solid black;
+  border-radius: 50%;
+  animation-name: ani-border; 
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  transition: all linear 4s;
 }
+/* heart-pump */
+.pump{
+  transition: transform 1s;
+}
+.pump:hover{
+  transform: scale(1.5);
+}
+
+.pump_small{
+  transition: transform 1s;
+}
+.pump_small:hover{
+  transform: scale(1.1);
+}
+
+/* header start */
+.navbar > a{
+  font-size: 1.1rem;
+}
+
 /* header end */
 
+/* homepage start */
+.home_background_img{
+  height: 100%;
+  width: 100%;
+  background-image: url('/img/select_home.webp');
+  background-position: center;
+}
+#aladin{
+  height: 150px;
+  width: 100%;
+  overflow: hidden;
+}
+#aladin_mov {
+  animation: aladin_mov 12s linear infinite;
+} 
+
+@keyframes aladin_mov{
+  0% {
+    left : -15%;
+  }
+  25% {
+    left: 15%;
+  }
+  50%{
+    left : 45%;
+  }
+  75%{
+    left : 75%;
+  }
+  100% {
+    left: 100%;
+  }
+
+}
+/* homepage end */
+
 /* login start */
-.btn-login {
+.btn-login{
   font-size: 0.9rem;
   letter-spacing: 0.05rem;
   padding: 0.75rem 1rem;
 }
 
-.btn-google {
-  color: white !important;
-  background-color: #ea4335;
-}
-
-.btn-facebook {
-  color: white !important;
-  background-color: #3b5998;
-}
 /* login end */
 
 /* registration start */
 .card-img-left {
   width: 58%;
   /* Link to your background image using in the property below! */
-  background: scroll center
-    url("/img/register.png");
+  background: scroll center url("/img/register.png");
   
 }
 .card-img-left-1 {
@@ -62,56 +118,76 @@ header > h1 {
 
 
 /* display chats */
-.wrapper{
-  max-height: 650px;
-  height: 100%;
-  overflow: auto;
-}
-.container {
-  border: 2px solid #dedede;
-  background-color: #f1f1f1;
-  border-radius: 5px;
-  padding: 10px;
-  margin: 10px 0;
-}
-
-
-.darker {
-  border-color: #ccc;
-  background-color: #ddd;
-}
-
-.container::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-
-.container img {
-  float: left;
-  max-width: 60px;
+#chat_img > img {
+  max-width: 55px;
   width: 100%;
-  margin-right: 20px;
+  margin-left: 15px;
   border-radius: 50%;
 }
-
-.container img.right {
-  float: right;
-  margin-left: 20px;
-  margin-right:0;
-}
-.container span {
-  display: block;
-  margin: 10px;
-  font-size: 1.3rem;
+#parent {
+  max-height: 580px;
+  overflow: auto;
 }
 
-.time-right {
-  float: right;
-  color: #aaa;
+
+/* displayProfile */
+
+#profile_img {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 150px;
 }
 
-.time-left {
-  float: left;
-  color: #999;
+#profile_img:hover {
+  box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+
+/* fliiping card start */
+.flip-card {
+  background-color: transparent;
+  width: 300px;
+  height: 300px;
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flip-card-front {
+  background-color: #bbb;
+  color: black;
+}
+
+.flip-card-back {
+  background-color: #2980b9;
+  color: white;
+  transform: rotateY(180deg);
+}
+/* fliiping card end */
+
+.show_disp {
+  visibility: visible;
+}
+.hidden_disp{
+  visibility: none;
 }

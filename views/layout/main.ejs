@@ -32,9 +32,30 @@
     </title>
   </head>
   <body>
-    <div class="container-xxl  px-md-5 shadow-lg mt-5">
+    <div class="container-lg">
       <%- include ('../header.ejs'); %>
+      <!-- aladin start-->
+      <div class="container">
+        <div class="row align-items-center position-relative" id="aladin">
+            <div class="col-12 position-absolute" id="aladin_mov">
+                <img src="/img/flying_aladin.webp" 
+                    width="200px"
+                alt=""
+                >
+                <h4 class="d-inline text-success fw-bold">Welcome to The Cheating App</h4>
+            </div>
+        </div>
+    
+      <!-- aladin end -->
       <main><%- body -%></main>
+      <footer class="bg-light text-center text-lg-start mt-2">
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(28, 24, 24, 0.5)">
+          © 2023 Copyright:
+          <span>Vivek Pandey</span>
+        </div>
+        <!-- Copyright -->
+      </footer>
       
     </div>
 

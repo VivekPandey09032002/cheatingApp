@@ -4,7 +4,8 @@ import upload from "../controller/fileUpload.js";
 const userRoutes = express.Router();
 
 function authen (req,res,next) {
-    if(req.session.session_email || req.session.session_male){
+    const {email} = req.query
+    if(req.session.session_email == email || req.session.session_male){
         next()
     }else{
         return res.redirect('/login')
@@ -29,9 +30,10 @@ userRoutes.post('/updateMsg',userController.updateMsg);
 userRoutes.get('/', (req,res) => {res.render('homepage.ejs')})
 userRoutes.get('/register',(req,res)=>{ res.render('register.ejs'), {title : 'Registration Page'}})
 userRoutes.get('/login', alreadyLoggedIn,(req,res) => {res.render('login.ejs'), {title : 'Login Page'}})
-userRoutes.get('/selectGf',(req,res) => {res.render('selectGf.ejs', {title : 'Gf Selection'})})
+userRoutes.get('/selectGf',userController.getSelectGf)
 userRoutes.get('/displayMsg',authen,userController.getDisplayMsg)
 userRoutes.get('/logout',userController.getLogOut)
 userRoutes.get('/deleteMsg',userController.deleteMessage)
 userRoutes.get('/displayProfile',userController.displayProfile)
+userRoutes.get('/updateDesc',userController.getUpdateDesc)
 export default userRoutes;

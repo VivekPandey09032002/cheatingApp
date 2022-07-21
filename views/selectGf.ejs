@@ -18,14 +18,15 @@
           </h3>
           <form method="post" action="/displayMsg">
             <div class="form-floating mb-3">
-              <input
-                type="text"
-                class="form-control"
-                id="gfName"
-                placeholder="name@example.com"
-                name="name"
-                autocomplete="off"
-              />
+              <select id="names" class="form-select form-select-sm" name="name" aria-label=".form-select-sm example">
+                <% names.forEach( (name,index) => { %>
+                  <option value="<%=name%>" 
+                    <% if(index==0){%>
+                      selected
+                    <%}%>
+                    ><%=name%></option>
+                <% }) %>
+              </select>
               <label for="floatingInputEmail">Enter gf Name</label>
             </div>
             <div class="d-flex justify-content-evenly mb-2">
@@ -62,18 +63,16 @@
       document.cookie = "auth:true";
     }
   }
-  let profile = document.getElementById("profile")
-  let gfName = document.getElementById("gfName")
-  profile.gfData = ""
-  gfName.addEventListener('input', (e)=>{
-    profile.gfData= e.originalTarget.value
+  let names = document.getElementById("names")
+  let profileButton = document.getElementById('profile')
+  profileButton.data = names.value
+  names.addEventListener('change', function (e)  {
+    profileButton.data = this.value 
   })
-  
-  profile.addEventListener('click', (e)=>{
+  profileButton.addEventListener('click', function (e) {
     e.preventDefault()
-    if(profile.gfData != "")
-      window.location = `http://localhost:3000/displayProfile?name=${profile.gfData}`
-    
+    window.location = `http://localhost:3000/displayProfile?name=${this.data}`
   })
+
   
 </script>

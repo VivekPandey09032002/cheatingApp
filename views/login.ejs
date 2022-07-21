@@ -1,15 +1,22 @@
 <div class="container">
 
-      <div class="row">
-        
-        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+      <div class="row ">
+        <div class="col-sm-12 col-md-6 align-self-center">
+          <div class="card rounded-3" style="width: 80%; height: 80%; margin: 20px auto;">
+            <img class="card-img-top" src="/img/login_img.jpg" height="60%" alt="Card image cap">
+            <div class="card-body ">
+              <p class="card-text text-center pt-3">Welcome to the Login Page of the Application. To login enter your registered email id and password. If you don't have one then click on, register link to register yourself. Thank You.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-6 mx-auto">
           <div class="card border-0 shadow rounded-3 my-5">
             <% if (typeof msg == 'undefined' ? false : true) { %> 
             <div class="alert alert-danger text-center" role="alert">
               <%= msg %>
             </div>
             <% } %>
-            <div class="card-body p-4 p-sm-5">
+            <div class="card-body p-2 p-sm-5">
               <h5 class="card-title text-center mb-5 fw-light fs-5 fw-bold">Login As GirlFriend</h5>
               <form method="post" action="/login">
                 <div class="form-floating mb-3">

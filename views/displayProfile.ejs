@@ -1,31 +1,105 @@
-
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-7">
-      <div>
-        <% if(typeof result.imgLocation !== "undefined" && result.imgLocation != "") { %>
-        <img src="/upload/images/<%=result.imgLocation%>" style="width:100%; max-height:600px;" class="img-fluid" alt="<%=result.name%>'s image" />
-        <%} else {%>
-        <img src="/upload/images/defaultImg.png" style="width:100%; max-height:600px;" class="img-fluid" alt="<%=result.name%>'s image" />
-        <%}%> 
-        <form method="post" action="/uploadImg?email=<%=result.email%>" enctype="multipart/form-data">
-            <input type="file" class="form-control" name="images">
-            <button type="submit" name="image" class="text-center"
-            style="margin: 10px 260px;"
-            ><span class="badge bg-secondary">Upload Profile Image</button></h3>
-            
-        </form>
-        
-      </div>
+<div class="container">
+  <div class="row ">
+    <div class="col-6">
+        <p class="mt-2">
+        <span class = "fw-bold" style="float:left;">Click on show Description box</span>
+        <span style="float:right;" id="show_description_box" class="btn btn-dark" >hide/show Description box</span>
+        </p>
+    
     </div>
-    <div class="col-5">
-      <div>
-        <h1 class="text-center"><%= result.name %>'s Description</h1>
-        <h4 class="mt-5">Name: <%=result.name%></h4>
-        <h4>Email: <%=result.email%></h4>
-        <h4>Section: <%=result.section%></h4>
-        <h4>Batch: <%=result.batch%></h4>  
-      </div>
+    <div class="col-2" style="border: 2px dashed black; border-radius: 8px;">
+      <span id="description" class="d-block btn btn-dark mt-2">Add Description</span>
+    </div>
+    <div class="col-4 " style="border: 2px dashed black; border-radius: 8px; border-left: none;">
+      <form method="post" class="form-inline my-2" action="/uploadImg?email=<%=result.email%>" enctype="multipart/form-data">
+        <div class="form-group">
+          <input type="file" class="border-right" name="images">
+          <button type="submit" class="btn btn-dark">upload</button>
+        </div>
+          
+    </form>
     </div>
   </div>
 </div>
+
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <div class="form-group" id="textbox" style="display: none;">
+        <label for="description">description:</label>
+        <textarea class="form-control" rows="2" id="comment"></textarea>
+      </div> 
+
+
+      <div class="card mx-auto my-2" style="width:400px;">
+        <h3 class="mt-2 text-center"> <%=result.name%>'s information</h3>
+        <div class="card-body">
+          <h3 class="mt-2 text-center">Name : <%=result.name%></h3>
+          <h3 class="mt-2 text-center">Email : <%=result.email%></h3>
+          <h3 class="mt-2 text-center">Section: <%=result.section%></h3>  
+          <h3 class="mt-2 text-center">Batch: <%=result.batch%></h3>
+          <p class="mt-2 text-center" id="desc">Description: <%=result?.description%></p>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-5 mt-5 ">
+        <% if(typeof result.imgLocation !== "undefined" && result.imgLocation != "") { %>
+
+          <div class="flip-card m-auto">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="/upload/images/<%=result.imgLocation%>" alt="<%=result.name%>'s image" style="width:300px;height:300px;">
+              </div>
+              <div class="flip-card-back">
+                <h1 class="mt-5"><%=result.name%> of </h1> 
+                <p><%=result.batch%> batch studied</p> 
+                <p>in Section <%=result.section%></p>
+              </div>
+            </div>
+          </div>
+        <%} else {%>
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="/upload/images/<%=result.imgLocation%>" alt="<%=result.name%>'s image" style="width:300px;height:300px;">
+              </div>
+              <div class="flip-card-back">
+                <h1 class="mt-5"><%=result.name%> of </h1> 
+                <p><%=result.batch%> batch studied</p> 
+                <p>in Section <%=result.section%></p>
+              </div>
+            </div>
+          </div>        
+        <%}%> 
+
+    </div>
+
+  </div>
+</div>
+
+<script defer>
+
+  const show_description_box = document.getElementById('show_description_box')
+  const description = document.getElementById('description')
+  description.addEventListener('click', (e)=>{
+    console.log('hi')
+    const textbox = document.getElementById('comment')
+    console.log(textbox)
+    if(textbox.value != "" && textbox.value.length>=10){
+      let value = textbox.value
+      textbox.value = ""
+      toggleDiv('textbox')
+      window.location = `http://localhost:3000/updateDesc?email=<%=result.email%>&desc=${value}`
+    }
+  })
+  show_description_box.addEventListener('click', (e)=>{
+    toggleDiv('textbox')
+  })
+  function toggleDiv(id) {
+    var div = document.getElementById(id);
+    div.style.display = div.style.display == "none" ? "block" : "none";
+  }
+  
+</script>
